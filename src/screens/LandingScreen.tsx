@@ -55,7 +55,7 @@ export const LandingScreen = () => {
         <Text style={styles.addressText}>{displayAddress}</Text>
       </View>
       <View style={styles.footer}>
-        <Text>Footer</Text>
+        <Text>Foot</Text>
       </View>
     </View>
   );
