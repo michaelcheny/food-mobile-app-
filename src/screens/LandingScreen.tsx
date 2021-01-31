@@ -3,15 +3,19 @@ import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 
 import * as Location from 'expo-location';
 
+import { useNavigation } from '../utils';
+
 const screenWidth = Dimensions.get('screen').width;
 
 export const LandingScreen = () => {
+  const { navigate } = useNavigation();
+
   const [errorMsg, setErrorMsg] = useState('');
   const [address, setAddress] = useState<Location.LocationGeocodedLocation>();
   const [displayAddress, setDisplayAddress] = useState('Waiting for Current Location');
 
   useEffect(() => {
-    async () => {
+    (async () => {
       let { status } = await Location.requestPermissionsAsync();
       if (status !== 'granted') {
         setErrorMsg('Permission to access location is not granted');
@@ -32,12 +36,18 @@ export const LandingScreen = () => {
           setAddress(item);
           let currentAddress = `${item.name},${item.street}, ${item.postalCode}, ${item.country}`;
           setDisplayAddress(currentAddress);
+
+          if (currentAddress.length > 0) {
+            setTimeout(() => {
+              navigate('homeStack');
+            }, 2000);
+          }
           return;
         }
       } else {
         // notify user something went wrong with location
       }
-    };
+    })();
   }, []);
 
   return (

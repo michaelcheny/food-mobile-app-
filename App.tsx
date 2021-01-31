@@ -8,19 +8,19 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 const SwitchNavigator = createSwitchNavigator({
-  // landingStack: {
-  //   screen: createStackNavigator(
-  //     {
-  //       Landing: LandingScreen,
-  //       // search address screen
-  //     },
-  //     {
-  //       defaultNavigationOptions: {
-  //         headerShown: false,
-  //       },
-  //     }
-  //   ),
-  // },
+  landingStack: {
+    screen: createStackNavigator(
+      {
+        Landing: LandingScreen,
+        // search address screen
+      },
+      {
+        defaultNavigationOptions: {
+          headerShown: false,
+        },
+      }
+    ),
+  },
   homeStack: createBottomTabNavigator({
     // home tab Icon
     home: {
